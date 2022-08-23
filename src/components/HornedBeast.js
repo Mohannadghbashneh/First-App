@@ -1,43 +1,38 @@
 import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 import Card from "react-bootstrap/Card";
-import Row from "react-bootstrap/Row";
-import data from "./Json.json";
+import {Col} from "react-bootstrap";
 
 class HornedBeast extends React.Component {
   constructor(props) {
-    super(props); 
+    super(props);
     this.state = {
-        val:''
-    }
-}
+      val: "",
+    };
+  }
 
-incrementNum = () => {
+  vote = () => {
     this.setState({
-       val: this.state.val+ "❤️"
-    })
-}
+      val: this.state.val + "❤️",
+    });
+  };
+
   render() {
     return (
-      <Row className="row" >
-        <div  style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gridGap: 15 }}>
-          {data.map((jsonObject) => {
-            return (
-              
-                <Card style={{ width: "18rem" }}>
-                  <Card.Img variant="top" src={jsonObject.image_url} onClick={this.incrementNum}/>
-                  <Card.Body>
-                    <Card.Title>{jsonObject.title}</Card.Title>
-                    <Card.Text>{jsonObject.description}</Card.Text>
-                    <Card.Text>
-                       Votes: {this.state.val}
-                    </Card.Text>
-                  </Card.Body>
-                </Card>
-              
-            );
-          })}
-        </div>
-      </Row>
+      <Col>
+      <Card style={{ width: "18rem", height: "500px"  }}>
+        <Card.Body>
+          <Card.Title>{this.props.title}</Card.Title>
+          <Card.Img
+    
+            src={this.props.img}
+            onClick={this.vote}
+          />
+          <Card.Text>{this.props.des}</Card.Text>
+          <Card.Text>Votes: {this.state.val}</Card.Text>
+        </Card.Body>
+      </Card>
+      </Col>
     );
   }
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -11,7 +12,8 @@ class Header extends React.Component {
   render(){
     return(
     <div>
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+    
+    <Navbar collapseOnSelect expand="lg" bg="danger" variant="dark">
       <Container>
         <Navbar.Brand href="#home">WELCOM ALL 💌</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />

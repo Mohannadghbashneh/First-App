@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Modal from "react-bootstrap/Modal";
 
-class SelectedBeast extends React.Component {
+class SelectedBeast extends React.Component{
   render() {
     const displayModal = this.props.displayModal;
     const hideModal = this.props.hideModal;

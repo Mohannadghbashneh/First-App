@@ -23,6 +23,7 @@ class Header extends React.Component {
             <NavDropdown title="OUR SOCIAL MAEDIA" id="collasible-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">FACEBOOK 👤</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.3">INSTAGRAM 📷</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">SNAPCHAT 📷</NavDropdown.Item>
               <NavDropdown.Divider />
               
             </NavDropdown>

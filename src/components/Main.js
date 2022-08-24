@@ -1,31 +1,35 @@
-import React from "react";
-import HornedBeast from "./HornedBeast";
-import {Row} from "react-bootstrap";
-
+import React from "react"
+import HornedBeast from "./HornedBeast"
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 
 
 class Main extends React.Component {
-    render(){
-        return(
-          <Row xs={2} md={4} className="g-4">
-            {this.props.beasts.map((beast, index) => {
-            return (
-              <div key={index}>
-                <HornedBeast
-                  showModal = {this.props.showModal}
-                  title={beast.title}
-                  img={beast.image_url}
-                  description={beast.description}
-                  horns={beast.horns}
-                />
-              </div>
-            )
-          })}
-          </Row>
+    constructor(props) {
+        super(props);
+        this.state = {
+            animalData: this.props.data
+        }
+        console.log(this.props.data)
+    }
+
+    render() {
+        return (
+            <Row xs={1} md={3} className="g-4" key='11' >
+                {
+                    this.props.data.map(animal => {
+                        return (
+
+                            <Col>
+                                <HornedBeast animalData={animal} showModal={this.props.showModal} />
+                            </Col>
+
+                        )
+                    })
+                }
+            </Row >
         )
     }
 }
 
 export default Main;
-
-

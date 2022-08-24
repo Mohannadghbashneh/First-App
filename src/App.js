@@ -1,46 +1,64 @@
-import React from "react";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import Main from "./components/Main";
-import data from "./components/Json.json";
-import SelectedBeast from "./components/SelectedBeast";
+import React from 'react';
+import data from "./components/Json.json"
+import Header from './components/Header'
+import Footer from './components/Footer';
+import Main from './components/Main';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import MyModal from './components/SelectedBeast';
+import Form from './components/FormofHorns'
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      beastData: data,
-      displayModal: false,
-      selectedBeast: {}
-    };
+      animalData: data,
+      selectedAnimal: {},
+      showModal: false,
+      selectedHorn: 0
+    }
   }
-  showModal = (name) => {
+  showModal = (animal) => {
+    this.setState({
+      showModal: true,
+      selectedAnimal: animal
+    })
+  };
+  onModalHide = () => {
+    this.setState({
+      showModal: false,
+    })
+  }
+  resetForm = () => {
+    this.setState({
+      animalData: data
+    })
+  }
+  formtData = (value) => {
+    this.resetForm()
+    const select = data.filter(animal => {
+      return (value === 0) ? data : (animal.horns === value)
+    })
+    return select
+  }
 
-    const selectedBeast = data.find(beast => beast.title === name);
-    this.setState({selectedBeast, displayModal:true});
-  }
-  hideModal = () => {this.setState({displayModal: false});
+  filterSelect = (e) => {
+    console.log(e.target.formSelect.value);
+    this.setState({
+      animalData: this.formtData(parseInt(e.target.formSelect.value))
+    })
+
   }
 
-  
   render() {
     return (
-      <div>
+      <div key='appKey' >
         <Header />
-        <div>
-          <Main
-            showModal={this.showModal}
-            beasts={this.state.beastData}
-          />
-          <SelectedBeast
-          displayModal={this.state.displayModal}
-          hideModal={this.hideModal}
-          selectedBeast={this.state.selectedBeast} />
-          
-        </div>
+        <Form filterSelect={this.filterSelect} reset={this.resetForm} />
+        <Main data={this.state.animalData} showModal={this.showModal} horn={this.state.selectedHorn} />
+        <MyModal show={this.state.showModal} onHide={this.onModalHide} selectedAnimal={this.state.selectedAnimal} />
         <Footer />
-      </div>
-    );
+      </div >
+    )
   }
 }
 

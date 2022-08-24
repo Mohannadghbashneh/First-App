@@ -1,40 +1,32 @@
 import React from "react";
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
-import Modal from "react-bootstrap/Modal";
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
+import Image from 'react-bootstrap/Image'
 
-class SelectedBeast extends React.Component{
-  render() {
-    const displayModal = this.props.displayModal;
-    const hideModal = this.props.hideModal;
-    const image = this.props.selectedBeast.image_url;
-    const title = this.props.selectedBeast.title;
-    const description = this.props.selectedBeast.description;
-
-    return (
-      <Modal show={displayModal} onHide={this.props.hideModal}>
-        <Modal.Dialog>
-          <Modal.Header>
-            <h2>{title}</h2>
-          </Modal.Header>
-          <Modal.Body>
-            <Card style={{ width: "26rem" }}>
-              <Card.Img src={image}
-            />
-              <Card.Body>
-                <Card.Title>{title}</Card.Title>
-                <Card.Text>{description}</Card.Text>
-                
-                <Button onClick={hideModal} variant="dark" size="lg" block>
-                  close
-                </Button>
-              </Card.Body>
-            </Card>
-          </Modal.Body>
-        </Modal.Dialog>
-      </Modal>
-    );
-  }
+class SelectedBeast extends React.Component {
+    render() {
+        return (
+            <Modal show={this.props.show}
+                size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered>
+                <Modal.Header>
+                    <Modal.Title id="contained-modal-title-vcenter">
+                        {this.props.selectedAnimal.name}
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Image src={this.props.selectedAnimal.image_url} alt={this.props.selectedAnimal.name} fluid />
+                    <p>
+                        {this.props.selectedAnimal.description}
+                    </p>
+                    <p>Number of Horns:{this.props.selectedAnimal.horns}</p>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button onClick={this.props.onHide}>Close</Button>
+                </Modal.Footer>
+            </Modal>
+        )
+    }
 }
-
 export default SelectedBeast;
